@@ -1,0 +1,6 @@
+#!/bin/bash
+
+echo " Extract web page links by B4GG3R"
+echo " Usage: target-links.txt output.txt"
+
+for url in $(cat $1); do curl --insecure -s -k "$url" | grep -Eo '(http|https)://[^<"]+' | awk -F"'" '{print $1}' >> $2; echo "TARGET: "$url" Done"; done
